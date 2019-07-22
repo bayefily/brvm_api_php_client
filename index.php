@@ -26,11 +26,20 @@ function get_data(){
         echo'<div class="item">';
           echo'<span>'.$item->Code_symbole.'</span> ';
           echo'<span>'.number_format((float)$item->Cours_Cloture, 2, '.', '').'</span> ';
-          echo'<span>'.number_format((float)$item->Variation_Pourcentage, 2, '.', '') .'%'.'</span> ';
-          if ($item->Variation_Pourcentage <= 0) {
-            echo'<span class="icone-seance bad"></span>';
+          
+          if ($item->Variation_Pourcentage == 0) {
+            echo'<span class="bg-grey">'.number_format((float)$item->Variation_Pourcentage, 2, '.', '') .'%'.'</span> ';
           } else {
+            echo'<span>'.number_format((float)$item->Variation_Pourcentage, 2, '.', '') .'%'.'</span> ';
+          }
+          
+          if ($item->Variation_Pourcentage < 0) {
+            echo'<span class="icone-seance bad"></span>';
+          } else if ($item->Variation_Pourcentage > 0) {
             echo'<span class="icone-seance good"></span>';
+          }
+          else {
+            echo'<span class=""></span>';
           }
         echo'</div>';
       echo'</div>';
